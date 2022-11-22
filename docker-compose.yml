@@ -1,0 +1,35 @@
+version: '3'
+services:
+    saphana:
+      image: "saplabs/hanaexpress:2.00.061.00.20220519.1"
+      restart: "unless-stopped"
+      ports:
+        - 39013:39013
+        - 39017:39017
+        - 39041-39045:39041-39045
+        - 1128-1129:1128-1129
+        - 59013-59014:59013-59014
+      volumes:
+        - ./data:/hana/hooks/post_start/
+        - ./data:/hana/mounts/dump/
+      environment:
+        - DUMP_FOLDER=DUMP
+        - SOURCE_SCHEMA=SOURCE
+        - SCHEMA_NAME=LOCALDEV
+        - SCHEMA_PWD=Localdev1
+      command:
+        - --agree-to-sap-license
+        - --dont-check-system
+        - --dont-check-mount-points
+        - --master-password
+        - HXEHana1
+    portainer:
+      image: portainer/portainer-ce:2.0.0
+      command: -H unix:///var/run/docker.sock
+      restart: always
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./sap/portainer:/data
+#networks:
+#  full_network:
+#    driver: bridge
