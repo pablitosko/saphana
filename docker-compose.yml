@@ -1,35 +1,33 @@
 version: '3'
 services:
-    saphana:
+    hxe:
       image: "saplabs/hanaexpress:2.00.061.00.20220519.1"
       restart: "unless-stopped"
+      container_name: "hana_express_edition"
       ports:
-        - 39013:39013
-        - 39017:39017
-        - 39041-39045:39041-39045
-        - 1128-1129:1128-1129
-        - 59013-59014:59013-59014
-      volumes:
-        - ./data:/hana/hooks/post_start/
-        - ./data:/hana/mounts/dump/
-      environment:
-        - DUMP_FOLDER=DUMP
-        - SOURCE_SCHEMA=SOURCE
-        - SCHEMA_NAME=LOCALDEV
-        - SCHEMA_PWD=Localdev1
+        - 49013:49013
+        - 49015:49015
+        - 49041-49045:49041-49045
+        - 1138-1139:1128-1129
+        - 59023-59024:59013-59014
+        - 49030-49033:49030-49033
+        - 51000-51060:51000-51060
+        - 53075:53075
+      ulimits:
+        nofile:
+          soft: 1048576
+          hard: 1048576
+      hostname: hxehost
+      domainname: hxehost.localdomain
+#      sysctls:
+#        - kernel.shmmax=1073741824
+#        - net.ipv4.ip_local_port_range='60000 65535'
+#        - kernel.shmall=8388608
       command:
+#        - --master-password
+#        - HXEHana1
+        - --passwords-url
+        - file:///data/hxe/masterpassword.json
         - --agree-to-sap-license
-        - --dont-check-system
-        - --dont-check-mount-points
-        - --master-password
-        - HXEHana1
-    portainer:
-      image: portainer/portainer-ce:2.0.0
-      command: -H unix:///var/run/docker.sock
-      restart: always
       volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - ./sap/portainer:/data
-#networks:
-#  full_network:
-#    driver: bridge
+      - ./hxe:/hana/mounts
