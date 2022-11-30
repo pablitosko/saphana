@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+    hxe:
+      image: "saplabs/hanaexpress:2.00.061.00.20220519.1"
+      restart: "unless-stopped"
+      container_name: "hana_express_edition"
+      privileged: true
+      ports:
+        - 1128-1129:1128-1129
+        - 1138-1139:1138-1139
+        - 8090:8090
+        - 39013-39017:39013-39017
+        - 39040-39045:39040-39045
+        - 49030-49033:49030-49033
+        - 4390:4390
+        - 51000-51060:51000-51060
+        - 53075:53075
+        - 59013-59024:59013-59024
+        - 39013-3917:39013-3917
+      ulimits:
+        nofile:
+          soft: 1048576
+          hard: 1048576
+      hostname: hxehost
+      domainname: hxehost.localdomain
+      sysctls:
+        - kernel.shmmax=1073741824
+#        - net.ipv4.ip_local_port_range='40000 60999'
+        - kernel.shmall=8388608
+        - kernel.shmmni=32
+      command:
+#        - --master-password
+#        - HXEHana1
+        - --passwords-url
+        - file:///data/hxe/masterpassword.json
+        - --agree-to-sap-license
+      volumes:
+      - ./hxe:/hana/mounts
+      extra_hosts:
+      - "host.docker.internal:192.168.0.250"
+#      network_mode: host
+#      restart: on-failure
+#      networks:
+#        - tools
+#networks:
+#  tools:
+#    driver: bridge
+#    config:
+#    - subnet: 172.16.237.0/24
+#    - gatway: 172.16.237.1
+#  tools2:
+#    ipam:
+#      driver: host
+#      config:
+#      - subnet: 192.168.0.0/24
+#      - gatway: 192.168.0.1
