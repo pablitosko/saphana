@@ -1,0 +1,4 @@
+1 - Git Clone Project in /
+2 - Rename Path to name data
+3 - Run Command's in project
+4 - docker-compose up -d 
