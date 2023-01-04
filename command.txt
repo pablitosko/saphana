@@ -1,26 +1,26 @@
-sudo mkdir -p /data
-sudo mkdir -p /data/hxe
-sudo mkdir -p /data/hxe/backup
-sudo mkdir -p /data/hxe/data
-sudo mkdir -p /data/hxe/log
-sudo mkdir -p /data/hxe/system
-sudo mkdir -p /data/hxe/trace
+sudo mkdir -p /saphana/data /
+sudo mkdir -p /saphana/data/hxe /
+sudo mkdir -p /saphana/data/hxe/backup /
+sudo mkdir -p /saphana/data/hxe/data /
+sudo mkdir -p /saphana/data/hxe/log /
+sudo mkdir -p /saphana/data/hxe/system /
+sudo mkdir -p /saphana/data/hxe/trace
+cp /saphana/hxe/masterpassword.json /saphana/data/hxe/masterpassword.json
 
-sudo chmod u=rwx,go=rx /data
-sudo chmod u=rwx,go=rx /data/hxe
-sudo chmod u=rwx,go=rx /data/hxe/backup
-sudo chmod u=rwx,go=rx /data/hxe/data
-sudo chmod u=rwx,go=rx /data/hxe/log
-sudo chmod u=rwx,go=rx /data/hxe/system
-sudo chmod u=rwx,go=rx /data/hxe/trace
-sudo chmod u=rwx,go=rx /data/hxe/masterpassword.json
+sudo chmod u=rwx,go=rx /saphana/data /
+sudo chmod u=rwx,go=rx /saphana/data/hxe /
+sudo chmod u=rwx,go=rx /saphana/data/hxe/backup /
+sudo chmod u=rwx,go=rx /saphana/data/hxe/data / 
+sudo chmod u=rwx,go=rx /saphana/data/hxe/log /
+sudo chmod u=rwx,go=rx /saphana/data/hxe/system /
+sudo chmod u=rwx,go=rx /saphana/data/hxe/trace /
+sudo chmod u=rwx,go=rx /saphana/data/hxe/masterpassword.json
 
-
-sudo chmod 755 /data
-sudo chmod 755 /data/hxe
-sudo chmod 755 /data/hxe/backup
-sudo chmod 755 /data/hxe/data
-sudo chmod 755 /data/hxe/log
-sudo chmod 755 /data/hxe/system
-sudo chmod 755 /data/hxe/trace
-sudo chmod 755 /data/hxe/masterpassword.json
+ sudo chmod 755 /saphana/data /
+ sudo chmod 755 /saphana/data/hxe /
+ sudo chmod 755 /saphana/data/hxe/backup /
+ sudo chmod 755 /saphana/data/hxe/data /
+ sudo chmod 755 /saphana/data/hxe/log /
+ sudo chmod 755 /saphana/data/hxe/system /
+ sudo chmod 755 /saphana/data/hxe/trace /
+ sudo chmod 755 /saphana/data/hxe/masterpassword.json
