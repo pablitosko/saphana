@@ -17,6 +17,7 @@ services:
         - 53075:53075
         - 59013-59024:59013-59024
         - 39613:39613
+        - 3200:3200
       ulimits:
         nofile:
           soft: 1048576
@@ -32,12 +33,12 @@ services:
 #        - --master-password
 #        - HXEHana1
         - --passwords-url
-        - file:///data/hxe/masterpassword.json
+        - file:///hana/mounts/masterpassword.json
         - --agree-to-sap-license
       volumes:
-      - ./hxe:/hana/mounts
-      extra_hosts:
-      - "host.docker.internal:192.168.0.250"
+      - ./data/hxe:/hana/mounts
+#      extra_hosts:
+#      - "host.docker.internal:192.168.0.250"
 #      network_mode: host
 #      restart: on-failure
 #      networks:
